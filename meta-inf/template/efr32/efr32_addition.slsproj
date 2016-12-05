@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project id="com.silabs.ember.stack.rail.addition" partCompatibility="com.silabs.mcu.si32.efr32" toolchainCompatibility="com.silabs.ide.si32.iar com.silabs.ide.si32.gcc" sdkCompatibility="" contentRoot=".">
+  <macroDefinition name="$(partName:toUpper)"/>
+  <macroDefinition languageCompatibility="c asm" name="CONFIGURATION_HEADER" value="&quot;$--generatedHeader--$&quot;"/>
+</project>

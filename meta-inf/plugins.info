@@ -1,0 +1,333 @@
+# This file can list directories where to load plugins from or
+# declare virtual plugins.
+# Any line that says: pluginDirectory=RELATIVE/PATH/
+# will cause appbuilder to read in that directory for plugin subdirectories.
+#
+# Virtual plugins are declared with sections:
+# plugin(xxx) {
+#   BLOCK IDENTICAL TO plugin.properties
+# }
+
+
+# pluginDirectory=../plugins/
+#
+plugin(hal-efr32) {
+  root=$STACK
+  name=HAL library for RAIL
+  category=HAL
+  description=Necessary HAL files for railtest to work
+
+  providedApis=hal-railtest
+
+  #Files that are released in source
+  $STACK/submodules/emlib/src/em_int.c
+  $STACK/submodules/emlib/src/em_assert.c
+  $STACK/submodules/emlib/src/em_cmu.c
+  $STACK/submodules/emlib/src/em_emu.c
+  $STACK/submodules/emlib/src/em_gpio.c
+  $STACK/submodules/emlib/src/em_leuart.c
+  $STACK/submodules/emlib/src/em_usart.c
+  $STACK/submodules/emlib/src/em_ldma.c
+  $STACK/submodules/emlib/src/em_rmu.c
+  $STACK/submodules/emlib/src/em_rtc.c
+  $STACK/submodules/emlib/src/em_rtcc.c
+  $STACK/submodules/emlib/src/em_timer.c
+  $STACK/submodules/emlib/src/em_system.c
+
+  $STACK/submodules/emdrv/rtcdrv/src/rtcdriver.c
+  $STACK/submodules/emdrv/ustimer/src/ustimer.c
+  $STACK/submodules/emdrv/gpiointerrupt/src/gpiointerrupt.c
+
+  #App level hal stuff
+  $STACK/hal/hal_common.c
+  $STACK/hal/efr32/hal_efr.c
+
+  #BSP
+  $STACK/submodules/kits/common/bsp/bsp_stk_leds.c
+  $STACK/submodules/kits/common/bsp/bsp_stk.c
+  $STACK/submodules/kits/common/bsp/bsp_bcc.c
+  $STACK/submodules/kits/common/bsp/bsp_trace.c
+  $STACK/submodules/kits/common/drivers/dmactrl.c
+  $STACK/submodules/kits/common/drivers/retargetserial.c
+  $STACK/submodules/kits/common/drivers/retargetio.c
+  $STACK/submodules/kits/common/drivers/udelay.c
+
+  setup(additionalFiles) {
+    PATH(STACK_RELATIVE):submodules/emdrv/rtcdrv/inc
+    PATH(STACK_RELATIVE):submodules/emdrv/ustimer/inc
+    PATH(STACK_RELATIVE):submodules/emdrv/gpiointerrupt/inc
+    PATH(STACK_RELATIVE):submodules/emdrv/common/inc
+    PATH(STACK_RELATIVE):submodules/emlib/inc
+    PATH(STACK_RELATIVE):submodules/kits/common/bsp
+    PATH(STACK_RELATIVE):submodules/kits/common/drivers
+    PATH(STACK_RELATIVE):hal/efr32
+  }
+}
+
+plugin(rail-lib) {
+  root= $STACK/
+  name=RAIL Library
+  category=RAIL
+  description=This plugin provides core RAIL library.
+
+  callbacks= $STACK/meta-inf/callbacks/rail-common-callbacks.info
+
+  providedApis=rail-core
+
+  setup(additionalFiles) {
+    PATH(STACK_RELATIVE):submodules/rail_lib/common/
+    (efr32)=PATH(STACK_RELATIVE):submodules/rail_lib/chip/efr32
+    (efr32)=PATH(STACK_RELATIVE):submodules/rail_lib/chip/efr32/rf/common/cortex
+  }
+}
+
+plugin(railtest-base) {
+  root= $STACK
+  name=railtest Application
+  category=Sample Apps
+  description=This plugin provides the basic railtest application framework
+
+  requiredApis=response-printf,hal-railtest,memory-manager,queue,railtest-graphics,command-interpreter-rail,rail-core
+
+  options=nameString,displayBufferSize,maxPacketLength,txDelay,ciBufferSize,buttonHoldTime
+
+  displayBufferSize.name=Graphics Text Buffer
+  displayBufferSize.description=Buffer for outputting text on the display.
+  displayBufferSize.type=NUMBER:32,200
+  displayBufferSize.default=64
+  displayBufferSize.define=APP_DISPLAY_BUFFER_SIZE
+  maxPacketLength.name=Maximum Packet Size
+  maxPacketLength.description=Maximum packet size.
+  maxPacketLength.type=NUMBER:1,244
+  maxPacketLength.default=240
+  maxPacketLength.define=APP_MAX_PACKET_LENGTH
+  txDelay.name=Default Tx delay (ms)
+  txDelay.description=Default delay between packet Tx in milliseconds.
+  txDelay.type=NUMBER
+  txDelay.default=250
+  txDelay.define=APP_CONTINUOUS_TRANSFER_PERIOD
+  ciBufferSize.name=Command interpreter buffer size
+  ciBufferSize.description=Size of the buffer to hold a single command for processing.
+  ciBufferSize.type=NUMBER
+  ciBufferSize.default=256
+  ciBufferSize.define=APP_COMMAND_INTERFACE_BUFFER_SIZE
+  nameString.name=Application Name
+  nameString.description=Name string displayed on the console and LCD.
+  nameString.type=STRING
+  nameString.default=RAIL Test App
+  nameString.define=APP_DEMO_STRING_INIT
+  buttonHoldTime.name=Button Long Press Time (ms)
+  buttonHoldTime.description=Time in milliseconds that you must hold a button for it to be a 'long' press.
+  buttonHoldTime.type=NUMBER
+  buttonHoldTime.default=1000
+  buttonHoldTime.define=BUTTON_HOLD_MS
+
+  implementedCallbacks=RAILCb_RfReady,RAILCb_TxPacketSent,RAILCb_TxRadioStatus,RAILCb_RxPacketReceived,RAILCb_RxRadioStatus,RAILCb_RadioStateChanged,RAILCb_TimerExpired,RAILCb_CalNeeded
+
+  setup(additionalFiles) {
+    PATH(STACK_RELATIVE):apps/railtest
+    PATH(STACK_RELATIVE):stack/config
+  }
+}
+
+plugin(rangetest-base) {
+  root= $STACK
+  name=Range Test Application
+  category=Sample Apps
+  description=This plugin provides the Range Test function
+
+  requiredApis=hal-railtest,memory-manager,rail-core      
+
+  options=maxPacketLength
+
+  maxPacketLength.name=Maximum Packet Size
+  maxPacketLength.description=Maximum packet size.
+  maxPacketLength.type=NUMBER:1,244
+  maxPacketLength.default=240
+  maxPacketLength.define=APP_MAX_PACKET_LENGTH
+
+  implementedCallbacks=RAILCb_RfReady,RAILCb_TxPacketSent,RAILCb_TxRadioStatus,RAILCb_RxPacketReceived,RAILCb_RxRadioStatus,RAILCb_RadioStateChanged,RAILCb_TimerExpired,RAILCb_CalNeeded
+
+  # additional source files can be added like:
+  #apps/common/app_ci/debug_ci.c
+
+  #apps/rangetest/graphics.c
+  #apps/rangetest/menu.c
+  #apps/rangetest/pushButton.c
+  #apps/rangetest/rangeTest.c
+  #apps/rangetest/rangetestconfig.c
+
+  submodules/kits/common/drivers/display.c
+  submodules/kits/common/drivers/displaypalemlib.c
+  submodules/kits/common/drivers/displayls013b7dh03.c
+  submodules/kits/common/drivers/dmactrl.c
+  submodules/kits/common/drivers/udelay.c
+  submodules/kits/common/bsp/bsp_stk_leds.c
+  submodules/kits/common/bsp/bsp_stk.c
+  submodules/kits/common/bsp/bsp_bcc.c
+
+
+  #GLIB
+  submodules/reptile/glib/glib/glib.c
+  submodules/reptile/glib/glib/glib_bitmap.c
+  submodules/reptile/glib/glib/glib_font_narrow_6x8.c
+  submodules/reptile/glib/glib/glib_font_normal_8x8.c
+  submodules/reptile/glib/glib/glib_line.c
+  submodules/reptile/glib/glib/glib_rectangle.c
+  submodules/reptile/glib/glib/glib_string.c
+  submodules/reptile/glib/dmd/display/dmd_display.c
+
+  #DEBUG functions
+  submodules/emdrv/uartdrv/src/uartdrv.c
+  submodules/emdrv/dmadrv/src/dmadrv.c
+
+  setup(additionalFiles) {
+    PATH(STACK_RELATIVE):submodules/kits/common/drivers
+    PATH(STACK_RELATIVE):apps/rangetest/config
+    PATH(STACK_RELATIVE):apps/rangetest
+    PATH(STACK_RELATIVE):submodules/emdrv/spidrv/inc
+    PATH(STACK_RELATIVE):submodules/emdrv/dmadrv/inc
+    PATH(STACK_RELATIVE):submodules/emdrv/uartdrv/inc
+    PATH(STACK_RELATIVE):submodules/reptile/glib
+    PATH(STACK_RELATIVE):submodules/reptile/glib/glib
+    PATH(STACK_RELATIVE):submodules/reptile/glib/dmd
+  }
+}
+
+plugin(response-printf) {
+  root= $STACK
+  name=Response Printf
+  category=Utils
+  description=The response printf() functionality used by RAIL test applications.
+
+  providedApis = response-printf
+
+  options=formatStringSize
+
+  formatStringSize.name=Max Format String Size
+  formatStringSize.description=Maximum size of the printf format string used by the response printf tool internally.
+  formatStringSize.type=NUMBER:16,1000
+  formatStringSize.default=256
+  formatStringSize.define=MAX_FORMAT_STRING_SIZE
+
+  utils/response_print/response_print.c
+
+  setup(additionalFiles) {
+    PATH(STACK_RELATIVE):utils/response_print
+  }
+}
+
+plugin(lcd-graphics) {
+  root= $STACK
+  name=Application Graphics for RAIL
+  category=Utils
+  description=This plugin provides a graphical display to be used with RAIL test applications.
+
+  providedApis = railtest-graphics
+
+  utils/graphics/graphics.c
+  submodules/kits/common/drivers/display.c
+  submodules/kits/common/drivers/displaypalemlib.c
+  submodules/kits/common/drivers/displayls013b7dh03.c
+
+  #GLIB
+  submodules/reptile/glib/glib/bmp.c
+  submodules/reptile/glib/glib/glib.c
+  submodules/reptile/glib/glib/glib_bitmap.c
+  submodules/reptile/glib/glib/glib_circle.c
+  submodules/reptile/glib/glib/glib_font_narrow_6x8.c
+  submodules/reptile/glib/glib/glib_font_normal_8x8.c
+  submodules/reptile/glib/glib/glib_font_number_16x20.c
+  submodules/reptile/glib/glib/glib_line.c
+  submodules/reptile/glib/glib/glib_polygon.c
+  submodules/reptile/glib/glib/glib_rectangle.c
+  submodules/reptile/glib/glib/glib_string.c
+  submodules/reptile/glib/dmd/display/dmd_display.c
+
+  setup(additionalFiles) {
+    PATH(STACK_RELATIVE):utils/graphics
+    PATH(STACK_RELATIVE):submodules/reptile/glib
+    PATH(STACK_RELATIVE):submodules/reptile/glib/glib
+    PATH(STACK_RELATIVE):submodules/reptile/glib/dmd
+  }
+}
+
+plugin(command-interpreter) {
+  root= $STACK
+  name=Command Interpreter for RAIL
+  category=Utils
+  description=This plugin provides a simple command interpreter for use with RAIL applications.
+
+  providedApis = command-interpreter-rail
+
+  options=argumentCount
+
+  argumentCount.name=Maximum Argument Count
+  argumentCount.description=Maximum number of command line arguments supported.
+  argumentCount.type=NUMBER:1,1000
+  argumentCount.default=20
+  argumentCount.define=MAX_COMMAND_ARGUMENTS
+
+  $STACK/utils/command_interpreter/command_interpreter.c
+
+  setup(additionalFiles) {
+    PATH(STACK_RELATIVE):utils/command_interpreter
+  }
+}
+
+plugin(circular-queue) {
+  root= $STACK
+  name=Circular queue
+  category=Utils
+  description=This plugin provides a simple circular queue to be used with RAIL applications.
+
+  providedApis = queue
+
+  options=queueLength
+
+  queueLength.name=Queue Length
+  queueLength.description=Length of the receive packet queue.
+  queueLength.type=NUMBER:1,1000
+  queueLength.default=10
+  queueLength.define=MAX_QUEUE_LENGTH
+
+  utils/queue/circular_queue.c
+
+  setup(additionalFiles) {
+    PATH(STACK_RELATIVE):utils/queue
+  }
+}
+
+plugin(buffer-pool-memory-manager) {
+  root= $STACK
+  name=Buffer pool memory manager
+  category=Utils
+  description=This plugin provides a simple buffer pool based memory allocator for RAIL applications.
+
+  implementedCallbacks=RAILCb_AllocateMemory,RAILCb_FreeMemory,RAILCb_BeginWriteMemory,RAILCb_EndWriteMemory
+
+
+  providedApis = memory-manager
+
+  options=bufferPoolLength,maxBufferSize
+
+  bufferPoolLength.name=Buffer Pool Length
+  bufferPoolLength.description=Number of buffers in the buffer pool.
+  bufferPoolLength.type=NUMBER:1,1000
+  bufferPoolLength.default=10
+  bufferPoolLength.define=BUFFER_POOL_SIZE
+
+  maxBufferSize.name=Buffer Pool Entry Size
+  maxBufferSize.description=The size of each entry in the buffer pool.
+  maxBufferSize.type=NUMBER:1,1000
+  maxBufferSize.default=256
+  maxBufferSize.define=MAX_BUFFER_SIZE
+
+  utils/memory_manager/buffer_pool_allocator.c
+  utils/memory_manager/rail_integration.c
+
+  setup(additionalFiles) {
+    PATH(STACK_RELATIVE):utils/memory_manager
+  }
+}
+

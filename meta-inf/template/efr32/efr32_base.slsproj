@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project id="com.silabs.ember.stack.rail.base" kitCompatibility="" partCompatibility="com.silabs.mcu.si32.efr32" toolchainCompatibility="com.silabs.ide.si32.iar com.silabs.ide.si32.gcc" sdkCompatibility="" contentRoot=".">
+
+  <!-- CMSIS and Device -->
+  <includePath uri="$(sdkInstallationPath:default())/submodules/CMSIS/Include" />
+  <!-- EFR32MG1P - Initial -->
+  <includePath uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32MG1P/Include" partCompatibility="com.silabs.mcu.si32.efm32.efr32mg com.silabs.mcu.si32.efr32.efr32mg1p com.silabs.mcu.si32.efr32.efr32mg" />
+  <!-- EFR32MG1V -->
+  <includePath uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32MG1V/Include" partCompatibility="com.silabs.mcu.si32.efr32.efr32mg1v" />
+  <!-- EFR32MG1B -->
+  <includePath uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32MG1B/Include" partCompatibility="com.silabs.mcu.si32.efr32.efr32mg1b" />
+  <!-- EFR32BG1P -->
+  <includePath uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32BG1P/Include" partCompatibility="com.silabs.mcu.si32.efr32.efr32bg1p" />
+  <!-- EFR32BG1V -->
+  <includePath uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32BG1V/Include" partCompatibility="com.silabs.mcu.si32.efr32.efr32bg1v" />
+  <!-- EFR32BG1B -->
+  <includePath uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32BG1B/Include" partCompatibility="com.silabs.mcu.si32.efr32.efr32bg1b" />
+  <!-- EFR32FG1P -->
+  <includePath uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32FG1P/Include" partCompatibility="com.silabs.mcu.si32.efr32.efr32fg1p" />
+  <!-- EFR32FG1V -->
+  <includePath uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32FG1V/Include" partCompatibility="com.silabs.mcu.si32.efr32.efr32fg1v" />
+  <!-- EFR32SG1P -->
+  <includePath uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32SG1P/Include" partCompatibility="com.silabs.mcu.si32.efr32.efr32sg1p" />
+  <!-- EFR32SG1V -->
+  <includePath uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32SG1V/Include" partCompatibility="com.silabs.mcu.si32.efr32.efr32sg1v" />
+  <!-- EFR32SG1B -->
+  <includePath uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32SG1B/Include" partCompatibility="com.silabs.mcu.si32.efr32.efr32sg1b" />
+  <folder name="CMSIS">
+   <!-- EFR32MG -->
+    <folder name="efr32mg1p" partCompatibility="com.silabs.mcu.si32.efr32.efr32mg1p com.silabs.mcu.si32.efr32.efr32mg" >
+      <!-- EFR32MG1P -->
+      <file name="startup_gcc_efr32mg1p.s" uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32MG1P/Source/GCC/startup_efr32mg1p.S" toolchainCompatibility="com.silabs.ide.si32.gcc" />
+      <file name="startup_iar_efr32mg1p.s" uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32MG1P/Source/IAR/startup_efr32mg1p.s" toolchainCompatibility="com.silabs.ide.si32.iar" />
+      <file name="system_efr32mg1p.c" uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32MG1P/Source/system_efr32mg1p.c" />
+    </folder>
+    <folder name="efr32mg1v" partCompatibility="com.silabs.mcu.si32.efr32.efr32mg1v" >
+      <!-- EFR32MG1V -->
+      <file name="startup_gcc_efr32mg1v.s" uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32MG1V/Source/GCC/startup_efr32mg1v.S" toolchainCompatibility="com.silabs.ide.si32.gcc" />
+      <file name="startup_iar_efr32mg1v.s" uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32MG1V/Source/IAR/startup_efr32mg1v.s" toolchainCompatibility="com.silabs.ide.si32.iar" />
+      <file name="system_efr32mg1v.c" uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32MG1V/Source/system_efr32mg1v.c" />
+    </folder>
+    <folder name="efr32mg1b" partCompatibility="com.silabs.mcu.si32.efr32.efr32mg1b" >
+      <!-- EFR32MG1B -->
+      <file name="startup_gcc_efr32mg1b.s" uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32MG1B/Source/GCC/startup_efr32mg1b.S" toolchainCompatibility="com.silabs.ide.si32.gcc" />
+      <file name="startup_iar_efr32mg1b.s" uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32MG1B/Source/IAR/startup_efr32mg1b.s" toolchainCompatibility="com.silabs.ide.si32.iar" />
+      <file name="system_efr32mg1b.c" uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32MG1B/Source/system_efr32mg1b.c" />
+    </folder>
+
+  <!-- EFR32BG -->
+    <folder name="efr32bg1p" partCompatibility="com.silabs.mcu.si32.efr32.efr32bg1p" >
+      <!-- EFR32BG1P -->
+      <file name="startup_gcc_efr32bg1p.s" uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32BG1P/Source/GCC/startup_efr32bg1p.S" toolchainCompatibility="com.silabs.ide.si32.gcc" />
+      <file name="startup_iar_efr32bg1p.s" uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32BG1P/Source/IAR/startup_efr32bg1p.s" toolchainCompatibility="com.silabs.ide.si32.iar" />
+      <file name="system_efr32bg1p.c" uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32BG1P/Source/system_efr32bg1p.c" />
+    </folder>
+    <folder name="efr32bg1v" partCompatibility="com.silabs.mcu.si32.efr32.efr32bg1v" >
+      <!-- EFR32BG1V -->
+      <file name="startup_gcc_efr32bg1v.s" uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32BG1V/Source/GCC/startup_efr32bg1v.S" toolchainCompatibility="com.silabs.ide.si32.gcc" />
+      <file name="startup_iar_efr32bg1v.s" uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32BG1V/Source/IAR/startup_efr32bg1v.s" toolchainCompatibility="com.silabs.ide.si32.iar" />
+      <file name="system_efr32bg1v.c" uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32BG1V/Source/system_efr32bg1v.c" />
+    </folder>
+    <folder name="efr32bg1b" partCompatibility="com.silabs.mcu.si32.efr32.efr32bg1b" >
+      <!-- EFR32BG1B -->
+      <file name="startup_gcc_efr32bg1b.s" uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32BG1B/Source/GCC/startup_efr32bg1b.S" toolchainCompatibility="com.silabs.ide.si32.gcc" />
+      <file name="startup_iar_efr32bg1b.s" uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32BG1B/Source/IAR/startup_efr32bg1b.s" toolchainCompatibility="com.silabs.ide.si32.iar" />
+      <file name="system_efr32bg1b.c" uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32BG1B/Source/system_efr32bg1b.c" />
+    </folder>
+
+    <!-- EFR32FG -->
+    <folder name="efr32fg1p" partCompatibility="com.silabs.mcu.si32.efr32.efr32fg1p" >
+      <!-- EFR32FG1P -->
+      <file name="startup_gcc_efr32fg1p.s" uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32FG1P/Source/GCC/startup_efr32fg1p.S" toolchainCompatibility="com.silabs.ide.si32.gcc" />
+      <file name="startup_iar_efr32fg1p.s" uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32FG1P/Source/IAR/startup_efr32fg1p.s" toolchainCompatibility="com.silabs.ide.si32.iar" />
+      <file name="system_efr32fg1p.c" uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32FG1P/Source/system_efr32fg1p.c" />
+    </folder>
+    <folder name="efr32fg1v" partCompatibility="com.silabs.mcu.si32.efr32.efr32fg1v" >
+      <!-- EFR32FG1V -->
+      <file name="startup_gcc_efr32fg1v.s" uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32FG1V/Source/GCC/startup_efr32fg1v.S" toolchainCompatibility="com.silabs.ide.si32.gcc" />
+      <file name="startup_iar_efr32fg1v.s" uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32FG1V/Source/IAR/startup_efr32fg1v.s" toolchainCompatibility="com.silabs.ide.si32.iar" />
+      <file name="system_efr32fg1v.c" uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32FG1V/Source/system_efr32fg1v.c" />
+    </folder>
+
+  <!-- EFR32SG -->
+    <folder name="efr32sg1p" partCompatibility="com.silabs.mcu.si32.efr32.efr32sg1p" >
+      <!-- EFR32SG1P -->
+      <file name="startup_gcc_efr32sg1p.s" uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32SG1P/Source/GCC/startup_efr32sg1p.S" toolchainCompatibility="com.silabs.ide.si32.gcc" />
+      <file name="startup_iar_efr32sg1p.s" uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32SG1P/Source/IAR/startup_efr32sg1p.s" toolchainCompatibility="com.silabs.ide.si32.iar" />
+      <file name="system_efr32sg1p.c" uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32SG1P/Source/system_efr32sg1p.c" />
+    </folder>
+    <folder name="efr32sg1v" partCompatibility="com.silabs.mcu.si32.efr32.efr32sg1v" >
+      <!-- EFR32SG1V -->
+      <file name="startup_gcc_efr32sg1v.s" uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32SG1V/Source/GCC/startup_efr32sg1v.S" toolchainCompatibility="com.silabs.ide.si32.gcc" />
+      <file name="startup_iar_efr32sg1v.s" uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32SG1V/Source/IAR/startup_efr32sg1v.s" toolchainCompatibility="com.silabs.ide.si32.iar" />
+      <file name="system_efr32sg1v.c" uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32SG1V/Source/system_efr32sg1v.c" />
+    </folder>
+    <folder name="efr32sg1b" partCompatibility="com.silabs.mcu.si32.efr32.efr32sg1b" >
+      <!-- EFR32SG1B -->
+      <file name="startup_gcc_efr32sg1b.s" uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32SG1B/Source/GCC/startup_efr32sg1b.S" toolchainCompatibility="com.silabs.ide.si32.gcc" />
+      <file name="startup_iar_efr32sg1b.s" uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32SG1B/Source/IAR/startup_efr32sg1b.s" toolchainCompatibility="com.silabs.ide.si32.iar" />
+      <file name="system_efr32sg1b.c" uri="$(sdkInstallationPath:default())/submodules/Device/SiliconLabs/EFR32SG1B/Source/system_efr32sg1b.c" />
+    </folder>
+  </folder>
+
+  <!-- RAILTEST INCLUDES-->
+  <macroDefinition name="RETARGET_VCOM" />
+  <includePath uri="$(sdkInstallationPath:default())/submodules/rail_lib/chip/efr32" partCompatibility="com.silabs.mcu.si32.efr32" />
+
+  <!-- LIBRARY FILES -->
+  <libraryFile uri="$(sdkInstallationPath:default())/autogen/librail_release/librail_efr32_iar_release.a" toolchainCompatibility="com.silabs.ide.si32.iar" />
+  <libraryPath uri="$(sdkInstallationPath:default())/autogen/librail_release" toolchainCompatibility="com.silabs.ide.si32.gcc" />
+  <libraryFile name="rail_efr32_gcc_release" toolchainCompatibility="com.silabs.ide.si32.gcc" />
+
+  <!-- RAIL Build Options -->
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.compiler.base" optionId="gnu.c.compiler.option.optimization.level" value="gnu.c.optimization.level.size"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.linker.base" optionId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.linker.nostdlibs" value="false"/>
+  <toolOption toolId="iar.arm.toolchain.compiler.v5.4.1" optionId="iar.arm.toolchain.compiler.option.suppress.v5.4.0" value="Pa050"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.compiler.base" optionId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.compiler.misc.dialect" value="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.compiler.misc.dialect.gnu99"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.linker.base" optionId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.linker.printffloat" value="true"/>
+</project>

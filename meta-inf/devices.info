@@ -1,0 +1,8 @@
+device "EFR32" {
+  required:rail-lib
+  required:hal-efr32
+
+#  recommended:plugin1
+#  prohibited:plugin2
+#  optional:plugin3
+}

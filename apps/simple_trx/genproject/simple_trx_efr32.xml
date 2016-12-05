@@ -1,0 +1,106 @@
+<workspace name="simple_trx_efr32">
+  <project name="simple_trx_efr32" device="EFR32MG1P133F256GM48">
+    <targets>
+      <name>iar</name>
+      <name>armgcc</name>
+    </targets>
+    <directories>
+      <app>$PROJ_DIR$\..</app>
+      <cmsis>$PROJ_DIR$\..\..\..\submodules</cmsis>
+      <emdrv>$PROJ_DIR$\..\..\..\submodules\emdrv</emdrv>
+      <emlib>$PROJ_DIR$\..\..\..\submodules\emlib</emlib>
+      <efrseq>$PROJ_DIR$\..\..\..\submodules\rail_lib\chip\efr32\rf</efrseq>
+      <kits>$PROJ_DIR$\..\..\..\submodules\kits</kits>
+      <reptile>$PROJ_DIR$\..\..\..\submodules\reptile</reptile>
+      <rail_lib>$PROJ_DIR$\..\..\..\submodules\rail_lib\common</rail_lib>
+      <rail_chip_specific>$PROJ_DIR$\..\..\..\submodules\rail_lib\chip\efr32\</rail_chip_specific>
+      <hal>$PROJ_DIR$\..\..\..\hal</hal>
+      <utils>$PROJ_DIR$\..\..\..\utils</utils>
+      <autogen>$PROJ_DIR$\..\..\..\autogen\railtest</autogen>
+    </directories>
+    <cflags>
+      <optimize>size</optimize>
+      <diagsuppress only_ide="iar">Pa050</diagsuppress>
+      <flag only_ide="armgcc">-std=c99 -Wno-unused-parameter</flag>
+      <define>RETARGET_VCOM</define>
+    </cflags>
+    <includepaths>
+      <path>##em-path-cmsis##\CMSIS\Include</path>
+      <path>##em-path-cmsis##\Device\SiliconLabs\EFR32MG1P\Include</path>
+      <path>##em-path-emlib##\inc</path>
+      <path>##em-path-drivers##</path>
+      <path>##em-path-rail_lib##</path>
+      <path>##em-path-kits##\common\bsp</path>
+      <path>##em-path-kits##\common\drivers</path>
+      <path>##em-path-reptile##\glib</path>
+      <path>##em-path-reptile##\glib\dmd</path>
+      <path>##em-path-reptile##\glib\glib</path>
+      <path>##em-path-emdrv##\gpiointerrupt\inc</path>
+      <path>##em-path-emdrv##\rtcdrv\inc</path>
+      <path>##em-path-emdrv##\ustimer\inc</path>
+      <path>##em-path-emdrv##\rtcdrv\inc</path>
+      <path>##em-path-emdrv##\common\inc</path>
+      <path>##em-path-kits##\EFR32MG1_BRD4151A\config</path>
+      <path>##em-path-utils##\command_interpreter</path>
+      <path>##em-path-utils##\graphics</path>
+      <path>##em-path-utils##\response_print</path>
+      <path>##em-path-utils##\memory_manager</path>
+      <path>##em-path-utils##\queue</path>
+      <path>$PROJ_DIR$</path>
+      <path>$PROJ_DIR$\..</path>
+      <path>##em-path-hal##\efr32</path>
+      <path>##em-path-app_common##</path>
+      <path>##em-path-efrseq##\common\cortex</path>
+      <path>##em-path-autogen##</path>
+      <path>##em-path-rail_chip_specific##</path>
+    </includepaths>
+    <libs>
+      <lib only_ide="iar">$PROJ_DIR$\..\..\..\autogen\librail_release\librail_efr32_iar_release.a</lib>
+      <lib only_ide="armgcc">$PROJ_DIR$\..\..\..\autogen\librail_release\librail_efr32_gcc_release.a</lib>
+    </libs>
+    <group name="CMSIS">
+      <source>##em-path-cmsis##\Device\SiliconLabs\EFR32MG1P\Source\$IDE$\startup_efr32mg1p.s</source>
+      <source>##em-path-cmsis##\Device\SiliconLabs\EFR32MG1P\Source\system_efr32mg1p.c</source>
+    </group>
+    <group name="emlib">
+      <source>##em-path-emlib##\src\em_int.c</source>
+      <source>##em-path-emlib##\src\em_assert.c</source>
+      <source>##em-path-emlib##\src\em_cmu.c</source>
+      <source>##em-path-emlib##\src\em_emu.c</source>
+      <source>##em-path-emlib##\src\em_gpio.c</source>
+      <source>##em-path-emlib##\src\em_leuart.c</source>
+      <source>##em-path-emlib##\src\em_usart.c</source>
+      <source>##em-path-emlib##\src\em_ldma.c</source>
+      <source>##em-path-emlib##\src\em_rmu.c</source>
+      <source>##em-path-emlib##\src\em_rtc.c</source>
+      <source>##em-path-emlib##\src\em_rtcc.c</source>
+      <source>##em-path-emlib##\src\em_timer.c</source>
+      <source>##em-path-emlib##\src\em_system.c</source>
+    </group>
+    <group name="emdrv">
+      <source>##em-path-emdrv##\rtcdrv\src\rtcdriver.c</source>
+      <source>##em-path-emdrv##\ustimer\src\ustimer.c</source>
+      <source>##em-path-emdrv##\gpiointerrupt\src\gpiointerrupt.c</source>
+    </group>
+    <group name="hal">
+      <source>##em-path-hal##\hal_common.c</source>
+      <source>##em-path-hal##\efr32\hal_efr.c</source>
+    </group>
+    <group name="BSP">
+      <source>##em-path-kits##\common\bsp\bsp_stk_leds.c</source>
+      <source>##em-path-kits##\common\bsp\bsp_stk.c</source>
+      <source>##em-path-kits##\common\bsp\bsp_bcc.c</source>
+      <source>##em-path-kits##\common\drivers\dmactrl.c</source>
+      <source>##em-path-kits##\common\drivers\udelay.c</source>
+    </group>
+    <group name="Source">
+      <source>##em-path-app##\main.c</source>
+    </group>
+    <group name="config">
+      <source>##em-path-autogen##\rail_config.c</source>
+    </group>
+    <patches>
+      <patch only_ide="iar" match="&lt;name&gt;CCJLinkResetList&lt;/name&gt;&#13;&#10;          &lt;version&gt;2&lt;/version&gt;&#13;&#10;          &lt;state&gt;7&lt;/state&gt;">&lt;name&gt;CCJLinkResetList&lt;/name&gt;&#13;&#10;          &lt;version&gt;6&lt;/version&gt;&#13;&#10;          &lt;state&gt;9&lt;/state&gt;</patch>
+    </patches>
+  </project>
+</workspace>

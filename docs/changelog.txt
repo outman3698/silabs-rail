@@ -1,0 +1,18 @@
+================ Revision history ============================================
+1.2.1:
+ - Updated RAIL Library to 1.2.7.1
+ - Included changelogs for Gecko SDK
+   - emlib, emdrv, device, reptile
+
+1.2.0:
+ - Updated RAIL Library to 1.2.5.0
+ - Updated Gecko SDK to 4.4.0
+ - Added duty cycle sample application
+
+1.1.0:
+ - Updated RAIL Library to 1.1.1.1
+ - Updated Gecko SDK to 4.3.0
+
+1.0.0:
+ - Updated RAIL Library to 1.0.0.2
+ - Updated Gecko SDK to 4.2.0
